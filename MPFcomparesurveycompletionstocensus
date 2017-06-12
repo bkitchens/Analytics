@@ -1,0 +1,9 @@
+select *
+from
+(select regiontype, regioncode, SUM(unitcompletionssurveyed) as sumunitscompletionssurveryed, SUM(unitcompletionscensus) as sumunitscensus  
+from existingunittotals
+where regiontype = 'MPFMKT'
+and regioncode = '5600' 
+and period between '201003' and '201703'
+Group by regiontype, regioncode) as combinedtable
+/* combinedtable is an arbitraty table name. can be named anything */
