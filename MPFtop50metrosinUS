@@ -1,0 +1,12 @@
+SELECT regionname, regiontype, sumquarterlycompletions, sumquarterlynetinventory
+FROM 
+/*The following is a subquery adding all completions within time frame*/
+(SELECT regionname, regiontype, SUM(quarterlycompletions) as sumquarterlycompletions, SUM(quarterlynetinventory) as sumquarterlynetinventory
+FROM regionperiodsummary
+WHERE regiontype = 'MPFMKT'
+and period between '201003' and '201703'
+GROUP BY regionname, regiontype) as combinedtable
+where sumquarterlycompletions is not NULL
+/* change the ORDER BY sumquarterlycompletions to ORDER BY sumquarterlynetinventory to change to pulling the top 50 metros based on net inventory growth */
+ORDER BY sumquarterlycompletions desc 
+LIMIT 50
