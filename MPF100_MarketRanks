@@ -1,0 +1,6 @@
+select * from regionperiodregionalcombinedsummary
+	where regiontype = 'COREUS NONYC'
+	and regioncode = 'US PRIMARYSECONDARY'
+/* defined as MPF 100*/
+	and period between '200703' and '201703'
+	and groupingclass = 'MarketRank'
