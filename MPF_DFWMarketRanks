@@ -1,0 +1,9 @@
+select * from regionperiodcombinedsummary
+where regiontype = 'MPFCOMBINEDMKT'
+/*Summary combined MPF markets, use 'MPFMKT' for individual markets*/
+and regioncode = '1922'
+/* DFW region code is 1922*/
+and period between '200703' and '201703'
+/* 10 years from 2Q 2007 to 2Q 2017*/
+and groupingclass = 'MarketRank'
+order by groupinglevel, period
